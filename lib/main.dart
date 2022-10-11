@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -45,56 +46,93 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int selectedColor = 0;
+  String tvText = '';
+
   @override
   StatefulWidget build(BuildContext context) {
-    int selectedColor = 0;
-    String tvText = '';
-    var textEditingController = TextEditingController();
+    TextEditingController textEditingController = TextEditingController();
 
-    var green = MaterialButton(
+    MaterialButton green = MaterialButton(
       elevation: 0,
       onPressed: () {
-        selectedColor = MyColors.greenCode;
+        setState(() {
+          selectedColor = MyColors.greenCode;
+        });
       },
       color: MyColors.green,
       shape: const CircleBorder(),
+      child: selectedColor == MyColors.greenCode
+          ? const Icon(
+              Icons.check,
+              color: Colors.white,
+            )
+          : null,
     );
-    const Icon(Icons.add);
-    var red = MaterialButton(
+    MaterialButton red = MaterialButton(
       elevation: 0,
       onPressed: () {
-        setState((){
+        setState(() {
           selectedColor = MyColors.redCode;
         });
       },
       color: MyColors.red,
       shape: const CircleBorder(),
-      child: selectedColor == MyColors.redCode? Icon(Icons.check,color: Colors.white,): Text(""),
+      child: selectedColor == MyColors.redCode
+          ? const Icon(
+              Icons.check,
+              color: Colors.white,
+            )
+          : null,
     );
-    var mainColor = MaterialButton(
+    MaterialButton mainColor = MaterialButton(
       elevation: 0,
       onPressed: () {
-        selectedColor = MyColors.mainColorCode;
+        setState(() {
+          selectedColor = MyColors.mainColorCode;
+        });
       },
       color: MyColors.mainColor,
       shape: const CircleBorder(),
+      child: selectedColor == MyColors.mainColorCode
+          ? const Icon(
+        Icons.check,
+        color: Colors.white,
+      )
+          : null,
     );
 
-    var blue = MaterialButton(
+    MaterialButton blue = MaterialButton(
       elevation: 0,
       onPressed: () {
-        selectedColor = MyColors.blueCode;
+        setState(() {
+          selectedColor = MyColors.blueCode;
+        });
       },
       color: MyColors.blue,
       shape: const CircleBorder(),
+      child: selectedColor == MyColors.blueCode
+          ? const Icon(
+        Icons.check,
+        color: Colors.white,
+      )
+          : null,
     );
-    var orange = MaterialButton(
+    MaterialButton orange = MaterialButton(
       elevation: 0,
       onPressed: () {
-        selectedColor = MyColors.orangeCode;
+        setState(() {
+          selectedColor = MyColors.orangeCode;
+        });
       },
       color: MyColors.orange,
       shape: const CircleBorder(),
+      child: selectedColor == MyColors.orangeCode
+          ? const Icon(
+        Icons.check,
+        color: Colors.white,
+      )
+          : null,
     );
 
     return Scaffold(
@@ -118,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(child: green),
                           Flexible(child: red),
